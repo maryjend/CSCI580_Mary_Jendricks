@@ -1,0 +1,61 @@
+Assignment 4 Report
+Simulated Annealing vs Genetic Algorithm for the Traveling Salesman Problem
+
+Mary Jendricks
+CSCI 580 – Spring 2026
+
+Overview
+This assignment explores two metaheuristic optimization algorithms for solving the Traveling Salesman Problem (TSP):
+Simulated Annealing (SA)
+Genetic Algorithm (GA)
+Both algorithms attempt to improve a baseline solution generated using the Nearest Neighbor (NN) heuristic. The objective is to minimize the total length of a tour visiting each city exactly once.
+The experiments compare the convergence behavior, variability, and search characteristics of both algorithms using the plots generated in the notebook.
+
+Baseline Solution
+The Nearest Neighbor heuristic produced an initial tour length of:
+NN = 6.0214
+This solution serves as the baseline that both SA and GA attempt to improve.
+
+Simulated Annealing Results
+Simulated Annealing significantly improved the tour length over the course of the search.
+Final result:
+SA Best Length = 5.0057
+This represents an improvement of:
+16.87% over the Nearest Neighbor solution.
+From the SA convergence plot, the algorithm steadily improved the solution between approximately 4000 and 7000 iterations, eventually stabilizing around the best length of 5.0057. After this point the temperature became very small and the algorithm stopped accepting worse moves, causing the solution to plateau.
+The final tour produced by SA also appears visually smoother and avoids many of the long crossing edges present in the Nearest Neighbor solution.
+
+Genetic Algorithm Results
+The Genetic Algorithm produced a final best tour length of:
+GA Best Length = 5.9001
+While this represents a slight improvement over the Nearest Neighbor baseline, the improvement is much smaller than that achieved by Simulated Annealing.
+From the GA convergence plot, the algorithm improved slightly during the early generations but quickly plateaued. The best solution stabilized around generation 75, after which the algorithm showed little additional progress.
+The population average length plot also shows that the population rapidly converged toward similar tour lengths early in the run.
+
+Which Algorithm Converged Faster?
+The Genetic Algorithm converged faster initially, reaching its best solution within the first approximately 75 generations.
+However, this early convergence occurred because the population quickly lost diversity and became dominated by similar tours. After this point, the algorithm stopped making meaningful improvements.
+Simulated Annealing converged more slowly but continued improving the solution for a longer portion of the search, eventually producing a significantly better result.
+
+Which Algorithm Showed More Variability?
+The Genetic Algorithm showed more variability early in the search because it maintains an entire population of candidate tours. This can be observed in the difference between the best tour length and the population average length.
+However, this variability decreased quickly as the population converged.
+Simulated Annealing showed less variability overall because it operates on a single solution trajectory. Instead of exploring multiple tours simultaneously, it explores the search space through incremental modifications of one tour.
+
+Did Simulated Annealing Escape Local Minima?
+Yes, Simulated Annealing demonstrated the ability to escape local minima.
+Evidence of this behavior can be seen in the accepted ΔE histogram, which shows that some moves with positive ΔE values (worse solutions) were accepted during the search. This occurs due to the temperature-based probability function used in simulated annealing.
+Allowing occasional uphill moves enables the algorithm to escape local optima and continue exploring the search space, which likely contributed to its ability to find a significantly better tour than the Genetic Algorithm.
+
+Did the Genetic Algorithm Lose Diversity?
+Yes, the Genetic Algorithm appears to have lost diversity relatively early in the run.
+This can be observed in the population average length plot, where the average quickly stabilizes and becomes very close to the best solution. Once most individuals in the population are very similar, crossover operations produce offspring that are nearly identical to existing solutions.
+The use of elitism also contributes to this effect by repeatedly preserving the best individuals across generations.
+As a result, the GA search stagnated early and did not explore the solution space as effectively as Simulated Annealing.
+
+Conclusion
+Both algorithms improved the initial Nearest Neighbor solution, but Simulated Annealing clearly outperformed the Genetic Algorithm in this experiment.
+Simulated Annealing achieved a 16.87% improvement, while the Genetic Algorithm only achieved a small improvement before converging prematurely.
+These results illustrate the strengths of Simulated Annealing in escaping local minima and continuing to explore the search space, while also demonstrating how Genetic Algorithms can suffer from early loss of population diversity.
+
+
